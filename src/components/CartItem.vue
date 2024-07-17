@@ -1,23 +1,47 @@
 <script setup lang="ts">
-import { defineProps } from "vue";
+import { defineProps, defineEmits, toRefs } from "vue";
 import { styled } from "@vvibe/vue-styled-components";
+import { Product } from "../model/Product";
 
 export interface CartItemProps {
-  item: { id: number; name: string; price: number };
+  product: Product;
 }
 
 const StyledCartItem = styled.div`
-  border: 1px solid #ddd;
+  border: 1px solid #ccc;
   padding: 16px;
-  margin: 16px 0;
+  width: 200px;
+  text-align: center;
 `;
 
-defineProps<CartItemProps>();
+const Button = styled.button`
+  margin-top: 10px;
+  padding: 8px 12px;
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  cursor: pointer;
+`;
+
+var props = defineProps<CartItemProps>();
+
+const emit = defineEmits<{
+  remove: [id: number];
+}>();
+
+const {
+  product: { value: product },
+} = toRefs(props);
+
+function remove() {
+  emit("remove", product.id);
+}
 </script>
 
 <template>
   <StyledCartItem>
-    <h2>{{ item.name }}</h2>
-    <p>{{ item.price }}</p>
+    <h2>{{ product.name }}</h2>
+    <p>{{ product.price }}</p>
+    <Button @click="remove">Remove</Button>
   </StyledCartItem>
 </template>

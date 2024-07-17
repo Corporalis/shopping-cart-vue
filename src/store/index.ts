@@ -1,5 +1,3 @@
-// src/store/index.ts
-
 import { createStore } from "vuex";
 
 interface Product {
@@ -24,6 +22,9 @@ const store = createStore<State>({
   mutations: {
     addToCart(state, product: Product) {
       state.cart.push(product);
+    },
+    removeToCart(state, id: number) {
+      state.cart = state.cart.filter((product) => product.id !== id);
     },
   },
   actions: {},

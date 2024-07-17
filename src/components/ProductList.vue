@@ -1,14 +1,23 @@
 <template>
-  <div>
-    <h1>Products</h1>
+  <Container>
     <ProductItem
       v-for="product in products ?? []"
       :key="product.id"
       :product="product"
       @add="addToCart"
     />
-  </div>
+  </Container>
 </template>
+
+<script setup lang="ts">
+import { styled } from "@vvibe/vue-styled-components";
+
+const Container = styled.main`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+`;
+</script>
 
 <script lang="ts">
 import { defineComponent } from "vue";

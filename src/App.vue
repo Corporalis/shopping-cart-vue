@@ -1,34 +1,38 @@
-<template>
-  <div id="app">
-    <nav>
-      <router-link to="/">Products</router-link>
-      <router-link to="/cart">Cart</router-link>
-    </nav>
-    <router-view></router-view>
-  </div>
-</template>
+<script setup lang="ts">
+import { styled } from "@vvibe/vue-styled-components";
+import { RouterLink } from "vue-router";
+import { GlobalStyles } from "./GlobalStyles.ts";
 
-<script lang="ts">
-import { defineComponent } from "vue";
+const Nav = styled.nav`
+  display: flex;
+  gap: 20px;
+  padding: 16px;
+  background-color: #f8f9fa;
+`;
 
-export default defineComponent({
-  name: "App",
-});
+const Link = styled(RouterLink)`
+  text-decoration: none;
+  color: #007bff;
+
+  &.router-link-exact-active {
+    font-weight: bold;
+  }
+`;
+
+const Main = styled.main`
+  padding: 1em;
+`;
 </script>
 
-<style>
-nav {
-  display: flex;
-  gap: 16px;
-  margin-bottom: 16px;
-}
-
-a {
-  text-decoration: none;
-  color: #42b983;
-}
-
-a.router-link-exact-active {
-  font-weight: bold;
-}
-</style>
+<template>
+  <GlobalStyles />
+  <div id="app">
+    <Nav>
+      <Link to="/">Products</Link>
+      <Link to="/cart">Cart</Link>
+    </Nav>
+    <Main>
+      <router-view></router-view>
+    </Main>
+  </div>
+</template>

@@ -1,31 +1,37 @@
 <script setup lang="ts">
 import { defineProps, defineEmits, toRefs } from "vue";
 import { styled } from "@vvibe/vue-styled-components";
-
-export interface ProductProps {
-  id: number;
-  name: string;
-  price: number;
-}
+import { Product } from "../model/Product";
 
 export interface ProductItemProps {
-  product: ProductProps;
+  product: Product;
 }
 
 const StyledProduct = styled.div`
-  border: 1px solid #ddd;
+  border: 1px solid #ccc;
   padding: 16px;
-  margin: 16px 0;
+  width: 200px;
+  text-align: center;
+`;
+
+const Button = styled.button`
+  margin-top: 10px;
+  padding: 8px 12px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
 `;
 
 const props = defineProps<ProductItemProps>();
+
+const emit = defineEmits<{
+  add: [product: Product];
+}>();
+
 const {
   product: { value: product },
 } = toRefs(props);
-
-const emit = defineEmits<{
-  add: [product: ProductProps];
-}>();
 
 function add() {
   emit("add", product);
@@ -36,6 +42,6 @@ function add() {
   <StyledProduct>
     <h2>{{ product.name }}</h2>
     <p>{{ product.price }}</p>
-    <button @click="add">Add to Cart</button>
+    <Button @click="add">Add to Cart</Button>
   </StyledProduct>
 </template>
