@@ -10,7 +10,7 @@ export interface ProductItemProps {
 const StyledProduct = styled.div`
   border: 1px solid #ccc;
   padding: 16px;
-  width: 200px;
+  width: 100%;
   text-align: center;
 `;
 
@@ -41,7 +41,7 @@ function add() {
 <template>
   <StyledProduct>
     <h2>{{ product.name }}</h2>
-    <p>{{ product.price }}</p>
+    <p>£{{ product.price }}</p>
     <Button @click="add">Add to Cart</Button>
   </StyledProduct>
 </template>

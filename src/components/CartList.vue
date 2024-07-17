@@ -17,8 +17,14 @@ import { styled } from "@vvibe/vue-styled-components";
 
 const Container = styled.main`
   display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
+  flex-direction: column;
+  text-align: center;
+  div {
+    margin-bottom: 1em;
+  }
+  div:last-of-type {
+    margin-bottom: 0;
+  }
 `;
 </script>
 
