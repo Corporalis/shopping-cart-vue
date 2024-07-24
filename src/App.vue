@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { styled } from "@vvibe/vue-styled-components";
 import { RouterLink } from "vue-router";
-import { GlobalStyles } from "./GlobalStyles.ts";
+import { GlobalStyles } from "./GlobalStyles";
 
 const Nav = styled.nav`
   display: flex;
